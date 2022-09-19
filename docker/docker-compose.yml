@@ -1,0 +1,20 @@
+version: "3.1"
+
+services:
+  db:
+    image: "postgres:latest"
+    restart: always
+    volumes:
+      - ./postgres-data:/home/postgreslocal/data
+    working_dir: /home/postgreslocal
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=qlchuyenbay
+      - POSTGRES_PASSWORD=example
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8081:8081
