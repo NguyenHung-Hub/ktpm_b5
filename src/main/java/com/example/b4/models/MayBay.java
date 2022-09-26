@@ -10,10 +10,9 @@ import java.util.List;
 @Data
 public class MayBay {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String MaMB;
-    private String Loai;
-    private String TamBay;
-    @ManyToMany(mappedBy = "mayBays")
+    private String maMB;
+    private String loai;
+    private String tamBay;
+    @ManyToMany(mappedBy = "mayBays", fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     private List<NhanVien> nhanViens;
 }

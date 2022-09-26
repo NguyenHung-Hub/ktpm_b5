@@ -5,6 +5,8 @@ import com.example.b4.repository.ChuyenBayRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ChuyenBayServiceImpl implements ChuyenBayService{
 
@@ -15,13 +17,31 @@ public class ChuyenBayServiceImpl implements ChuyenBayService{
         this.chuyenBayRepository = chuyenBayRepository;
     }
 
+
+
+    @Override
+    public List<ChuyenBay> getAll() {
+        return chuyenBayRepository.findAll();
+    }
+
+    @Override
+    public ChuyenBay getById(String maCB) {
+        return chuyenBayRepository.findByMaCB(maCB);
+    }
+
+
     @Override
     public ChuyenBay create(ChuyenBay chuyenBay) {
         return chuyenBayRepository.saveAndFlush(chuyenBay);
     }
+    @Override
+    public ChuyenBay update(ChuyenBay chuyenBay) {
+        return chuyenBayRepository.save(chuyenBay);
+    }
 
-//    @Override
-//    public ChuyenBay getById(String maCB) {
-//        return chuyenBayRepository.findByMaCB(maCB);
-//    }
+    @Override
+    public List<ChuyenBay>  findChuyenBayByGaDen(String gaDen) {
+        return chuyenBayRepository.findChuyenBayByGaDen(gaDen);
+    }
+
 }

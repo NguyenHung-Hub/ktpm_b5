@@ -12,11 +12,11 @@ import javax.persistence.Table;
 public class ChuyenBay{
 
     @Id
-    private String MaCB;
-    private String GaDi;
-    private String GaDen;
-    private String DoDai;
-    private String GioDi;
-    private String GioDen;
-    private String ChiPhi;
+    private String maCB;
+    private String gaDi;
+    private String gaDen;
+    private String doDai;
+    private String gioDi;
+    private String gioDen;
+    private Integer chiPhi;
 }
