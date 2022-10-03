@@ -2,7 +2,7 @@
 
 ### Docker file build spring boot application
 
-```json
+```
 FROM openjdk:11
 EXPOSE 8080
 ARG DEPENDENCY=target/application.war
@@ -12,7 +12,7 @@ ENTRYPOINT ["java","-jar","/application.war"]
 
 ### Docker compose file
 
-```json
+```
 version: "2"
 
 services:
