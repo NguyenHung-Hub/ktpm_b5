@@ -1,0 +1,43 @@
+version: "2"
+
+services:
+  db:
+    image: "postgres:latest"
+    restart: always
+    container_name: db
+    volumes:
+      - ./postgres-data:/home/postgreslocal/data
+    working_dir: /home/postgreslocal
+
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=qlchuyenbay
+      - POSTGRES_PASSWORD=example
+  adminer:
+    image: adminer
+    container_name: adminer
+    restart: always
+    ports:
+      - 8081:8081
+  web:
+    image: 'docker-spring-boot-postgres:latest'
+    build:
+      context: .
+    volumes:
+      - ./:/spring
+    ports:
+      - 8080:8080
+    restart: always
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/qlchuyenbay
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=example
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    container_name: web_QLCB
+    depends_on:
+      - db
+      - adminer
+    links:
+      - db
